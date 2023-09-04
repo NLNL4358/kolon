@@ -1,0 +1,149 @@
+.header{
+  width: 1920px;
+  margin : auto;
+  padding: 0px 48px;
+}
+.headerTop{
+  height: 115px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo_wrap{
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.logo{
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+.logo img{
+  height: 90%;
+  width: auto;
+}
+.favorite{
+  height: 20px;
+  width: fit-content;
+
+  position: relative;
+}
+  .favorite::before, .favorite::after{
+    position: absolute;
+    content: "";
+  }
+  .favorite::before{
+    width: 170px;
+    height: 30px;
+    background-color: rgb(30,30,30);
+    color: rgb(212, 212, 212);
+    content: "관심 브랜드를 추가해 보세요";
+    border-radius: 7px;
+    padding: 3px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    top: calc(100% + 15px) ;
+    left: -50%;
+  }
+  .favorite::after{
+    width: 0px;
+    height: 0px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid rgb(30,30,30);
+    top: 100%
+  }
+
+.favorite img{
+  margin-top: 10px;
+  height: 100%;
+  width: auto;
+
+  opacity: 0.7;
+  transition: 0.2s;
+}
+.favorite:hover img{
+  opacity: 1;
+}
+
+.header form{
+  height: 40px;
+  display: flex;
+  padding-bottom: 3px;
+  padding-right: 20px;
+  border-bottom: 1px solid black;
+}
+
+.header form input{
+  width: 420px;
+  border: none;
+  outline: none;
+  opacity: 0.5;
+  color : #333;
+}
+.header form input:focus{
+  opacity: 1;
+}
+.header form button{
+  height: 50%;
+  margin : auto;
+}
+.header form button img{
+  height: 100%;
+}
+
+.headerUtil ul{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.headerUtil ul li{
+  padding: 0px 11px;
+  margin-right: 10px;
+}
+.headerUtil ul li:nth-of-type(1){
+  opacity: 0.8;
+  padding: 0px 15px;
+  border-right: 1px solid #555;
+}
+
+.headerGnb{
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.gnbUl{
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 24px;
+}
+.gnbList a{
+  font-size: 18px;
+  position: relative;
+  opacity: 0.5;
+}
+.gnbList a.selected{
+  opacity: 1;
+}
+.gnbList a.selected::before{
+  position: absolute;
+  content: "";
+  width: 3px;
+  height: 3px;
+  border-radius: 100%;
+  background-color: #333;
+  top: calc( 100% + 8px);
+  left: 50%;
+
+  transform: translate(-50%);
+}
