@@ -6,9 +6,17 @@ import {Routes, Route, Link} from 'react-router-dom'
 import HomePage from './page/HomePage';
 import DetailPage from './page/DetailPage';
 import AboutPage  from './page/AboutPage';
+
+/* 상품 전체 페이지 */
+import ProductAllPage from './page/ProductAllPage';
+
+/* 특정 상품 Detail 페이지 */
 import ProductDetailPage  from './page/ProductDetailPage';
 import Header  from './page/Header';
 import Footer  from './page/Footer';
+
+/* 컴포넌트 */
+import ProductBox from './components/ProductBox';
 
 /* 
   유저스토리
@@ -49,6 +57,7 @@ function App() {
 
           {/* path의 뒤에 /:id  를 연결하여 DetailPage에서 useParam를 이용해 id를 확인할 수 있도록 한다. */}
           <Route path='/DetailPage/:id' element={<DetailPage></DetailPage>}></Route>
+          <Route path='/ProductAllPage' element={<ProductAllPage></ProductAllPage>}></Route>
           <Route path='/ProductDetailPage' element={<ProductDetailPage></ProductDetailPage>}></Route>
 
         </Routes>

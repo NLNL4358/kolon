@@ -2,6 +2,7 @@ import React from 'react'
 
 import { useParams } from 'react-router-dom'
 import ProductDetailPage from './ProductDetailPage';
+import ProductBox from '../components/ProductBox';
 
 export const DetailPage = () => {
 
@@ -12,7 +13,7 @@ export const DetailPage = () => {
     <div className='DetailPage inner'>
       DetailPage{id}
       
-      <ProductDetailPage></ProductDetailPage>
+      
     </div>
   )
 }

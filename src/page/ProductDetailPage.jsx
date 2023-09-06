@@ -1,13 +1,13 @@
 import React from 'react'
 
-export const ProductDetailPage = () => {
+export const ProductDetailPage = (props) => {
   return (
     <div>
-      <img src="https://images.kolonmall.com/Prod_Img/KS/2023/LS1/JWJJA23111NAY_LS1.jpg" alt="" />
-      <h4>brand</h4>
-      <h2>title</h2>
-      <p>price</p>
-      <span>베스트</span>
+      {/* 변?수.값 의미 -> 받아온 값이 있다면?  값을 가져와라 라는뜻 */}
+      <img src={props.img?.img} alt="" />
+      <h4>{props.title?.title}</h4>
+      <h2>{props.price?.price}</h2>
+      <p>{props.tag?.tag}</p>
     </div>
   )
 }
