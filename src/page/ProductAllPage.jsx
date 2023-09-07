@@ -2,6 +2,7 @@ import React from 'react';
 import {useEffect, useState} from 'react';
 import ProductBox from '../components/ProductBox';
 
+
 const productAllPage = () => {
 
 
@@ -25,14 +26,31 @@ const productAllPage = () => {
     /* 4. useState로 전달해준다. */
     setProductList(data);
 
+    /* !!! 여기 log는 useState인 빈 배열 [] 를 보여줄것이다 why? 리액트는 비동기로 동작하기 때문에 setProductList는 비동기로 실행하면서 그대로 코드가 내려와 변하기 전인 초기값 [] 를 보여주기 때문!! */
     console.log("useState",productList);
-
   }
 
   /* 여기서 불러오면 안됨!! 계~~~속 불러와서 터져 */
   // getProducts();
 
+  /* !!  useEffect( , [])   ,뒤에 빈괄호 [] 를 하면 마운트 됐을때 한번만 실행된다
+  때문에 API를 Get불러올때는 이렇게 뒤에 빈괄호 ,[] 를 가지는 useEffect 안에서 사용한다*/
+  useEffect(()=>{
+    getProducts();
+  },[])
 
+
+  /* !! 
+  위에서 getProducts 함수안의 log는 useState의 초기값인 [] 가 나올것이라 했었다
+  하지만 비동기적으로 set 함수는 동작하고있고 완료도 했을것이다
+  그럼 어떻게 확인해볼 수 있을까? 
+  이번엔 useEffect의 뒤에 ,[] 빈괄호가아닌 대상, 즉 재렌더링이나 마운트 됐음을 감지하고싶은 타겟을 넣어준다,  그러면 set 함수가 완료되었을떄 비로소 재렌더링된 useState변수를 감지하고 log를 찍어줄 것이다!!*/
+  useEffect(() => {
+    console.log("useState",productList);
+  }, [productList])
+
+
+  
   return (
     
     <div className='inner'>
