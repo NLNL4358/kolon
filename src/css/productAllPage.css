@@ -1,0 +1,7 @@
+.productBoxLi{
+  margin-bottom: 3rem;
+}
+.productBoxUl{
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+}

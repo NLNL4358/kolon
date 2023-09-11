@@ -1,0 +1,28 @@
+.productBrand{
+  font-size : 13px;
+  color : #666;
+}
+.productImg{
+
+}
+
+.productTitle{
+  margin: 1rem 0px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+.productPrice{
+  font-size: 14px;
+  color : #333;
+  margin-bottom: 1rem;
+}
+
+.productTag{
+  font-size : 11px;
+  padding : 5px 7px;
+  color : rgb(70, 70, 75);
+  background-color: rgb(225, 225, 255);
+  margin-right: 10px;
+}

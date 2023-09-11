@@ -2,6 +2,7 @@ import React from 'react';
 import {useEffect, useState} from 'react';
 import ProductBox from '../components/ProductBox';
 
+import '../css/productAllPage.css';
 
 const productAllPage = () => {
 
@@ -9,7 +10,7 @@ const productAllPage = () => {
   /* API를 받아주기 위해 useState 생성 */
   let [productList, setProductList] = useState([]);
 
-  /* API 호출 !! */
+  /* API 호출 const 함수이름 = async 화살표 함수 형태로 불러와야함 !! */
   const getProducts = async () => {
     /* 1. url에 로컬 Json 서버 주소 입력 (지금은 로컬 json인데 나중엔 진짜 json 형식의 api 주소적으면됨)*/
     let url = "http://localhost:5000/product"
@@ -54,7 +55,15 @@ const productAllPage = () => {
   return (
     
     <div className='inner'>
-      <h2>ProductAllPage</h2>
+      <ul className='productBoxUl'>
+        {
+          productList.map((item, index) => (
+            <li className={`productBoxLi ${index}`}>
+              <ProductBox productItem={item} productIndex={index}></ProductBox>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   )
 }

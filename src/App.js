@@ -1,7 +1,7 @@
 import './css/App.css';
 
 import {useState, useLocation} from 'react'
-import {Routes, Route, Link} from 'react-router-dom'
+import {Routes, Route, Link, Navigate} from 'react-router-dom'
 
 import HomePage from './page/HomePage';
 import DetailPage from './page/DetailPage';
@@ -11,9 +11,13 @@ import AboutPage  from './page/AboutPage';
 import ProductAllPage from './page/ProductAllPage';
 
 /* 특정 상품 Detail 페이지 */
-import ProductDetailPage  from './page/ProductDetailPage';
 import Header  from './page/Header';
 import Footer  from './page/Footer';
+
+
+/* 로그인 !! 경로 이동 처리방법을 사용할 것임 */
+import Login from './page/Login';
+import User from './page/User';
 
 /* 컴포넌트 */
 import ProductBox from './components/ProductBox';
@@ -48,18 +52,39 @@ item + delete 명령어 = 아이템 삭제
 
 
 function App() {
+
+  /*==================================== header 용 useState ===================================*/
+  
+                /* 클래스 추가제거를위해 리액트에서는 useState를 이용해야함 */
+    let [activeLink, setActiveLink] = useState(1);
+
+  /* ============================ header 용 useState ===============================*/
+
+
+  /* ================================ 로그인 =========================================== */
+  const [authenticate, setAuthenticate] = useState(false);  /* 로그인 상태 인가? */
+  const Private = () => {
+    return authenticate == true ? <User></User> : <Navigate to='/Login'></Navigate>;
+  }
+  /* ================================ 로그인 =========================================== */
+
+
   return (
     <div className="App">
-      <Header></Header>
+      {/* 중요!! 부모의 useState를 자식의 useState에게 주는법! useState와 setUseState를 아래와 같이 준다. */}
+      <Header activeLink={activeLink} setActiveLink={(index) => {setActiveLink(index)}}></Header>
         <Routes>
-          <Route path='/' element={<HomePage></HomePage>}></Route>
+          <Route path='/' element={<HomePage activeLink={activeLink} setActiveLink={(index) => {setActiveLink(index)}}></HomePage>}></Route>
           <Route path='/AboutPage' element={<AboutPage></AboutPage>}></Route>
 
           {/* path의 뒤에 /:id  를 연결하여 DetailPage에서 useParam를 이용해 id를 확인할 수 있도록 한다. */}
           <Route path='/DetailPage/:id' element={<DetailPage></DetailPage>}></Route>
           <Route path='/ProductAllPage' element={<ProductAllPage></ProductAllPage>}></Route>
-          <Route path='/ProductDetailPage' element={<ProductDetailPage></ProductDetailPage>}></Route>
 
+
+          {/* 로그인  */}
+          <Route path='/Login' element={<Login></Login>}></Route>
+          <Route path='/User' element={<User></User>}></Route>
         </Routes>
 
       <Footer></Footer>
