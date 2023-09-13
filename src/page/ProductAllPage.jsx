@@ -4,7 +4,8 @@ import ProductBox from '../components/ProductBox';
 
 import '../css/productAllPage.css';
 
-const productAllPage = () => {
+/* 박스에 로그인 useState정보를 전해줄거임 */
+const productAllPage = (props) => {
 
 
   /* API를 받아주기 위해 useState 생성 */
@@ -13,8 +14,10 @@ const productAllPage = () => {
   /* API 호출 const 함수이름 = async 화살표 함수 형태로 불러와야함 !! */
   const getProducts = async () => {
     /* 1. url에 로컬 Json 서버 주소 입력 (지금은 로컬 json인데 나중엔 진짜 json 형식의 api 주소적으면됨)*/
-    let url = "http://localhost:5000/product"
-
+      //let url = "http://localhost:5000/product"
+        // 아래로 변경! 
+      /* My Json Server를 이용한 url */
+      let url = "https://my-json-server.typicode.com/NLNL4358/kolon/product"
 
     /* 2. url을 이용하여  response라는 변수에 fetch(url) 패치 하여 넘겨주는데 받을때까지 기다려야하니까 await를 붙혀준다*/
     let response = await fetch(url);
@@ -54,7 +57,7 @@ const productAllPage = () => {
   
   return (
     
-    <div className='inner'>
+    <div className='productAllPage inner'>
       <ul className='productBoxUl'>
         {
           productList.map((item, index) => (

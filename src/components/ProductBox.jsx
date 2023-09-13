@@ -12,12 +12,15 @@ const ProductBox = (props) => {
     navigate(`/DetailPage/${index}`, { state : { targetProduct : props.productItem } })
   }
 
+  
   return (
     <div className='productBoxWrap' onClick={() => {
       showProduct(props.productItem.id)
     }}>
       {/* props가 있다면? 가져와라 라는 뜻 */}
-      <img src={props.productItem?.img} alt="" className={`productImg ${props.productIndex}`} />
+      <div className="productImgWrap">
+        <img src={props.productItem?.img} alt="" className={`productImg ${props.productIndex}`} />
+      </div>
       <p className='productBrand'>KOLON SPORT</p>
       <h2 className={`productTitle ${props.productIndex}`}>{props.productItem?.title}</h2>
       <h3 className={`productPrice ${props.productIndex}`}>{props.productItem?.price}</h3>

@@ -1,6 +1,6 @@
 import './css/App.css';
 
-import {useState, useLocation} from 'react'
+import {useState, useLocation, useEffect} from 'react'
 import {Routes, Route, Link, Navigate} from 'react-router-dom'
 
 import HomePage from './page/HomePage';
@@ -17,17 +17,23 @@ import Footer  from './page/Footer';
 
 /* 로그인 !! 경로 이동 처리방법을 사용할 것임 */
 import Login from './page/Login';
-import User from './page/User';
+import PrivatePage from './Route/PrivatePage'
 
 /* 컴포넌트 */
 import ProductBox from './components/ProductBox';
 
+
 /* 
   유저스토리
   1. 헤더, 푸터 html, css 작성 미디어쿼리작성
-  2. DetailPage를 누르면 전체 상품이 나온다
-  3. 상단: 상품개수, 높은금액, 낮은금액, 할인률, 신상품 버튼이 있어서 클릭하면 해당 데이터만 나온다.
-  4. 5열로 배열됨 780px 이하는 2열로 바뀌게 변경
+  2. Gnb 상품 클릭시 상품 전체페이지가 나온다.
+  3. 로그인 버튼을 누르면 로그인 페이지가 나온다.
+
+  4. 상품 클릭시 상품 디테일 페이지가 나온다.
+  5. 상품 디테일을 눌렀으나 로그인이 안되있을경우 로그인 페이지가 먼저 나온다
+  6. 로그인이 되어있으면 상품 상세페이지를 볼 수 있다.
+
+  7. 상품을 검색할 수 있다.
 */
 
 
@@ -62,9 +68,18 @@ function App() {
 
 
   /* ================================ 로그인 =========================================== */
+
+
   const [authenticate, setAuthenticate] = useState(false);  /* 로그인 상태 인가? */
+
+  useEffect(()=>{
+      console.log('인증', authenticate );
+  },[authenticate])
+
+
   const Private = () => {
-    return authenticate == true ? <User></User> : <Navigate to='/Login'></Navigate>;
+    console.log("프라이베이트");
+    return authenticate == true ? <PrivatePage></PrivatePage> : <Navigate to='/Login'></Navigate>;
   }
   /* ================================ 로그인 =========================================== */
 
@@ -78,13 +93,13 @@ function App() {
           <Route path='/AboutPage' element={<AboutPage></AboutPage>}></Route>
 
           {/* path의 뒤에 /:id  를 연결하여 DetailPage에서 useParam를 이용해 id를 확인할 수 있도록 한다. */}
-          <Route path='/DetailPage/:id' element={<DetailPage></DetailPage>}></Route>
+          <Route path='/DetailPage/:id' element={<DetailPage authenticate={authenticate}></DetailPage>}></Route>
           <Route path='/ProductAllPage' element={<ProductAllPage></ProductAllPage>}></Route>
 
 
           {/* 로그인  */}
-          <Route path='/Login' element={<Login></Login>}></Route>
-          <Route path='/User' element={<User></User>}></Route>
+          <Route path='/Login'element={<Login authenticate={authenticate} setAuthenticate={setAuthenticate} ></Login>}></Route>
+          <Route path='/User' element={<PrivatePage></PrivatePage>}></Route>
         </Routes>
 
       <Footer></Footer>

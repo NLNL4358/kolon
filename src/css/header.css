@@ -147,3 +147,29 @@
 
   transform: translate(-50%);
 }
+
+
+@media screen and (max-width : 1023px) {
+  .header{
+    width: 95%;
+    min-width: 300px;
+    padding: 0px 1rem;
+  }
+
+  .headerTop{
+    flex-direction: column;
+    height: auto;
+  }
+  .logo_wrap{
+    height: 110px;
+  }
+  .headerUtil{
+    margin-top: 1rem;
+  }
+  .favorite{
+    display: none;
+  }
+  .headerGnb .gnbUl{
+    justify-content: space-between;
+  }
+}
