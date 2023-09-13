@@ -5,7 +5,7 @@ import ProductBox from '../components/ProductBox';
 import '../css/productAllPage.css';
 
 /* 박스에 로그인 useState정보를 전해줄거임 */
-const productAllPage = (props) => {
+const ProductAllPage = (props) => {
 
 
   /* API를 받아주기 위해 useState 생성 */
@@ -71,4 +71,4 @@ const productAllPage = (props) => {
   )
 }
 
-export default productAllPage
+export default ProductAllPage
